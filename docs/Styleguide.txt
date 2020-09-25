@@ -1,0 +1,16 @@
+C Source Guidelines for this project:
+
+Always:
+- use /* */ comments, and not //. 
+- make sure that the code compiles before commit.
+- properly format a function (move the opening and closing brackets onto their own line)
+
+Never:
+- include a *.c file. It's bad practice. Use a header to link them instead.
+- use a lot of preprocessor directives. I try to avoid these as much as possible.
+- use cute types, (e.x. creating something like deftype int MyOwnInt).
+
+Sometimes:
+- enum should be preferred over DEFINE. Use DEFINE for macros that cover the whole document.
+- do a bounds check before writing to an array.
+ 
