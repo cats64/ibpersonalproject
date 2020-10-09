@@ -2,7 +2,7 @@
 # BUILD.SH
 # Note: you must have /bin/sh reflect a POSIX shell
 #
-
+set -e
 # Okay, first we come up with ANSI escape codes.
 # This allows us to create color-printed text, and that looks good.
 RED='\033[31m' # Red
