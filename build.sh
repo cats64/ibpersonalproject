@@ -1,6 +1,6 @@
 #!/bin/sh 
 # BUILD.SH
-# Note: you must have /bin/sh reflect a POSIX shell
+# Note: you must have /bin/sh reflect a POSIX shell. 
 #
 set -e
 # Okay, first we come up with ANSI escape codes.

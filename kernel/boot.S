@@ -1,4 +1,4 @@
-# Basic boot header. 
+# This is the first file run by the kernel.
 
 # Multiboot header.
 .set ALIGN,	1<<0		 # align loaded modules on page boundaries
