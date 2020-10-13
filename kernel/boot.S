@@ -26,13 +26,13 @@ stack_top:
 .section .text
 .global _start
 .type _start, @function
-_start
+_start:
 	movl $stack_top, %esp
 	
 	# TODO: create our own GDT table
 	
 	# Call global constructors in CPUland
-	call _init
+	#call _init
 	
 	# Transfer control to our kernel. 
 	# With this, we now have full control of the computer. 
