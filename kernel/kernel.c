@@ -1,8 +1,8 @@
 #include <stdint.h>
-#include <stdio.h>
-#include <tty.h>
+#include "tty.h"
 
 void main(void) {
-	// I still don't know what should go here
-	// Maybe kprint("Hello, world!\n");
+    term_init();
+    // Newline support is still broken
+    term_writesector("Hello, world!");
 }
