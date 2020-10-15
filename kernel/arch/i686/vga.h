@@ -1,12 +1,6 @@
 #include <stdint.h>
 
-/* What does this file do? It helps the kernel print text to the screen. 
-   This is a wrapper over raw hardware. 
-   
-   See also: tty.h, libc/stdio.h */
-
-/* Okay, so we start by defining colors in the graphics card. 
-   This _should_ be a #define, but that would require so many entries. */
+// Okay, so we start by defining colors in the graphics card.
 enum vga_color {
 	COLOR_BLACK = 0,
 	COLOR_BLUE = 1,
@@ -26,21 +20,12 @@ enum vga_color {
 	COLOR_WHITE = 15,
 }
 
-/* Now create a function that returns the color. 
-   This allows dynamic color setting. 
-   We can save space by using small valuesu. That's why we include stdint */
+// A function that allows for the creation of color values for printing.
 static inline uint8_t vga_print_color(enum vga_color fg, enum vga_color bg) {
 	return fg | bg << 4;
 }
 
-/* So when we set color, the entry to VGA memory must have:
-	-The first bit as foreground
-	-The second bit as background
-   As a result, this bitwise magic allows for some sweet colors. 
-   Sadly there's not a ton of decent colors open to us. */
-
-/* But what does this function do? Well, we give it a character...
-   and it creates data that we can put into the VGA card! */ 
+// A function that gives a value appropriate for entry into the VGA's mem buffer
 static inline uint16_t vga_entry(unsigned char uc, uint8_t color) {
 	return (uint16_t) uc | (uint16_t) color << 8;
 }
