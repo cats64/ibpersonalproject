@@ -1,12 +1,11 @@
-/* "Free" libraries given by GCC */
-#include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
+#include <string.h>
 
-/* Include libraries from the kernel */
+#include <kernel/tty.h>
+
 #include "vga.h"
-#include "tty.h"
-
 
 /* We first define the size of the VGA text mode buffer, and where the data should be copied to. The static const keywords are used to ensure that these variables are:
  - Local to this file
@@ -50,16 +49,16 @@ void term_setcolor(uint8_t color) {
 }
 
 /* A function that is called by putchar() to place characters onscreen. */
-void term_entryplace(unsigned char c, uint8_t color, size_t width, size_t length) {
+void term_putentryat(unsigned char c, uint8_t color, size_t width, size_t length) {
     /* The use of an unsigned char is because of the way that the VGA card accepts character input. This is an exception, not the rule, so I try to stick to regular char everywhere else. */
     const size_t index = length * VGA_WIDTH + width;
     term_buffer[index] = vga_entry(c, color);
 }
 
 /* A function that is used by putchar() for raw printing. */
-void term_putdown(char c) {
+void term_putchar(char c) {
     unsigned char uc = c;
-    term_entryplace(uc, term_color, term_column, term_row);
+    term_putentryat(uc, term_color, term_column, term_row);
     /* Should we hit the end of the buffer, wrap around */
     if (++term_column == VGA_WIDTH) {
         term_column = 0;
@@ -72,11 +71,10 @@ void term_putdown(char c) {
 /* A function that writes whole chunks of data to the screen. Pointers are used for data to save on space */
 void term_write(const char* data, size_t size) {
     for (size_t i = 0; i < size; i++)
-        term_putdown(data[i]);
+        term_putchar(data[i]);
 }
 
 /* A function that can write whole strings by passing the string and the size of the string. This ensures not only that every character is printed, but that there is no overprinting. */
 void term_writesector(const char* data) {
-    /* Hack until I write <string.h> implementation */
-    term_write(data, 10000000);
+    term_write(data, strlen(data));
 }
