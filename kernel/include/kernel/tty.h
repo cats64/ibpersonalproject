@@ -9,6 +9,6 @@
    We use gray on blue for kernel messages, like the BSOD of old. */
 
 void term_init(void);
-void term_putdown(char c);
+void term_putchar(char c);
 void term_write(const char* data, size_t size);
-void term_writesector(const char* data);
+void term_writestring(const char* data);
