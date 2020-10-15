@@ -38,7 +38,7 @@ _start:
 	# With this, we now have full control of the computer. 
 	call kernel_main
 
-	# If the kernel crashes for some reason, half the CPU to prevent damage.
+	# If the kernel crashes for some reason, halt the CPU to prevent damage.
 	cli
 1:	hlt
 	jmp 1b
