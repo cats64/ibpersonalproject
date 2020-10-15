@@ -1,16 +1,27 @@
-C Source Guidelines for this project:
+C source guidelines for this project:
 
 Always:
-- use /* */ comments, and not //. 
-- make sure that the code compiles before commit.
-- properly format a function (move the opening and closing brackets onto their own line)
+-Use // for TODO comments & one-line comments
+-Only C99
+-Use /* */ for serious comments & multiline comments
+-Start the brackets like this:
 
-Never:
-- include a *.c file. It's bad practice. Use a header to link them instead.
-- use a lot of preprocessor directives. I try to avoid these as much as possible.
-- use cute types, (e.x. creating something like deftype int MyOwnInt).
+int main(void) {
+	printf("Some words here\n");
+}
+
+-Prototype functions with a *.h file in an include folder.
 
 Sometimes:
-- enum should be preferred over DEFINE. Use DEFINE for macros that cover the whole document.
-- do a bounds check before writing to an array.
- 
+-Use preprocessor directives sparingly.
+-If in doubt, declare a size larger than needed, but check to see if a smaller one could work first
+
+Never:
+-Use preprocessor macros. These are dumb and should be avoided.
+-Include a *.c file into another file.
+-Use brackets like this:
+
+int main(void) 
+{
+	printf("Some words here\n");
+}
