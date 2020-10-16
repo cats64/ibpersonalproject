@@ -3,6 +3,8 @@
 
 #include <kernel/comn.h>
 
+// TODO: I'm unsure if static inline was a good choice
+
 // A function that sends a value on an I/O port.
 static inline void outb(uint16_t port, uint8_t val) {
 	asm volatile ( "outb %0, %1" 
