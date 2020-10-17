@@ -1,0 +1,10 @@
+#include <string.h>
+
+// A function that sets a given amount of memory values to the same value.
+void* memset(void* bufptr, int value, size_t size) {
+	unsigned char* buf = (unsigned char*) bufptr;
+	// Replace every point in the array with a given value, use the limit given in size
+	for (size_t i = 0; i < size; i++)
+		buf[i] = (unsigned char) value;
+	return bufptr;
+}
