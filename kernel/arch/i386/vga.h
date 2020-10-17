@@ -1,3 +1,6 @@
+#ifndef ARCH_I386_VGA_H
+#define ARCH_I386_VGA_H
+
 #include <stdint.h>
 
 // Okay, so we start by defining colors in the graphics card.
@@ -29,3 +32,5 @@ static inline uint8_t vga_print_color(enum vga_color fg, enum vga_color bg) {
 static inline uint16_t vga_entry(unsigned char uc, uint8_t color) {
 	return (uint16_t) uc | (uint16_t) color << 8;
 }
+
+#endif

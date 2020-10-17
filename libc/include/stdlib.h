@@ -1,3 +1,9 @@
-//TODO: We may wish to use macros in the OS. Find some way to add that here.
+#ifndef _STDLIB_H
+#define _STDLIB_H 1
+
+#include <sys/cdefs.h>
+
 // Function prototypes for abort.c
 void abort(void);
+
+#endif
