@@ -32,7 +32,7 @@ _start:
 	# TODO: create our own GDT table
 	
 	# Call global constructors in CPUland
-	#call _init
+	call _init
 	
 	# Transfer control to our kernel. 
 	# With this, we now have full control of the computer. 
