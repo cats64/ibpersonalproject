@@ -8,7 +8,7 @@
 static bool print(const char* data, size_t length) {
 	const unsigned char* bytes = (const unsigned char*) data;
 	// If the string is nonzero
-	for size_t i = 0; i < length; i++)
+	for(size_t i = 0; i < length; i++)
 		if (putchar(bytes[i]) == EOF)
 			return false;
 	return true;
@@ -60,7 +60,7 @@ int printf(const char* restrict format, ...) {
 			char c = (char) va_arg(parameters, int);
 			if (!maxrem) {
 				//TODO: when we return from this, mark the error as overflow
-				return -1
+				return -1;
 			}
 			if (!print(&c, sizeof(c)))
 				return -1;
