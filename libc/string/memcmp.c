@@ -1,7 +1,7 @@
 #include <string.h>
 
 //A function that compares a given number of bytes of two sections of memory.
-int memcpy(const void* aptr, const void* bptr, size_t size) {
+int memcmp(const void* aptr, const void* bptr, size_t size) {
 	const unsigned char* a = (const unsigned char*) aptr;
 	const unsigned char* b = (const unsigned char*) bptr;
 	for (size_t i = 0; i < size; i++) {
