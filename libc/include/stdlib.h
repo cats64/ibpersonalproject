@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 // Function prototypes for abort.c
+__attribute__((__noreturn__))
 void abort(void);
 
 #ifdef __cplusplus
