@@ -11,10 +11,5 @@ The kernel directory is for the kernel. The libc is baked into the kernel, but i
 There will be ISOs eventually in a sub-directory. 
 
 ## Build problems
-### How do I... 
-### start the build process?
-'./build.sh' or './build.sh -k' for multithreaded systems. 
-### clean up the folder?
-'./clean.sh' 
-### run it in QEMU?
-'./qemu.sh'. You need a copy of 'qemu-system-i386'. Qemu.sh will tell you before you run it if you have it installed. 
+### How do I build it?
+Run build.sh, then run qemu.sh to start it in QEMU. Alternatively, run build.sh and then iso.sh to make an ISO file.
