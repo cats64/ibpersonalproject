@@ -5,5 +5,5 @@
 void kernel_main(void) {
     term_init();
     // Newline support is still broken
-    printf("Print to screen test?\n");
+    printf("To print, or not to print:\n that is the question");
 }

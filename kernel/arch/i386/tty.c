@@ -33,7 +33,7 @@ static uint16_t* term_buffer;
 void term_init(void) {
     term_row = 0;
     term_column = 0;
-    term_color = vga_print_color(COLOR_WHITE, COLOR_BLUE);
+    term_color = vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLUE);
     term_buffer = VGA_MEMORY;
     for (size_t length = 0; length < VGA_HEIGHT; length++) {
         for (size_t width = 0; width < VGA_WIDTH; width++) {

@@ -1,4 +1,6 @@
-/* GNU compiler script. */
+/* GNU compiler script.
+ * Note: the 4K separation between sectors ensures that each is on their own memory page.
+ * This improves security when the security bit is set on the page. */
 
 /* Start execution at... well, the start */
 ENTRY(_start)
