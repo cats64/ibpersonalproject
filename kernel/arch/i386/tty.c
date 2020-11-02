@@ -59,6 +59,14 @@ void term_putentryat(unsigned char c, uint8_t color, size_t width, size_t length
 // A function that is used by putchar() for raw printing.
 void term_putchar(char c) {
     unsigned char uc = c;
+    // If we encounter a newline, move... one line
+    if (c == '\n') {
+      term_row++;
+      term_column = 0;
+      if (term_row == VGA_HEIGHT)
+	term_row = 0;
+      return;
+    }
     term_putentryat(uc, term_color, term_column, term_row);
     // Should we hit the end of the buffer, wrap around
     if (++term_column == VGA_WIDTH) {
