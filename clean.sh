@@ -10,3 +10,5 @@ done
 rm -rf sysroot
 rm -rf isodir
 rm -rf simpleos.iso
+
+test commit
