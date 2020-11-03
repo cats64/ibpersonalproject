@@ -67,6 +67,13 @@ void term_putchar(char c) {
 	term_row = 0;
       return;
     }
+    // If we encounter a tab, move 4 spaces
+    if (c == '\t') {
+      term_column = term_column + 4;
+      // TODO: Come up with a better error check for this
+      if (term_column == VGA_WIDTH)
+	term_column = 0;
+    }
     term_putentryat(uc, term_color, term_column, term_row);
     // Should we hit the end of the buffer, wrap around
     if (++term_column == VGA_WIDTH) {
