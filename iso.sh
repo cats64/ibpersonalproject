@@ -13,4 +13,4 @@ menuentry "simpleos" {
 	multiboot /boot/simpleos.kernel
 }
 EOF
-grub-mkrescue -o simpleos.iso isodir
+grub2-mkrescue -o simpleos.iso isodir
