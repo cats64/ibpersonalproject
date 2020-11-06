@@ -5,6 +5,6 @@
 void kernel_main(void) {
     term_init();
     // TODO: The tab still prints some weird character- fix that
-    printf("\t===- SimpleOS -===\nCopyright Nathaniel S. Flores. ALL RIGHTS RESERVED.\n");
+    printf("    ===- SimpleOS -===\nCopyright Nathaniel S. Flores. ALL RIGHTS RESERVED.\n");
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInit finished.");
 }
