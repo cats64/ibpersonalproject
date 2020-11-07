@@ -1,4 +1,4 @@
-#include <stdint.c>
+#include <stdint.h>
 #include <stddef.h>
 
 #include <kernel/asm.h>
@@ -19,7 +19,7 @@ static inline uint8_t inb(uint16_t port) {
 // outb: a function for sending data on an I/O location or port
 static inline void outb(uint16_t port, uint8_t val) {
   asm volatile ( "outb %0, %1"
-		 : "a"(val)
+		 : "=a"(val)
 		 : "Nd"(port) );
 }
 

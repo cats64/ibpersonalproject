@@ -1,7 +1,7 @@
 #ifndef _KERNEL_ASM_H
 #define _KERNEL_ASM_H
 
-#include <stdint.c>
+#include <stdint.h>
 #include <stddef.h>
 
 // Function prototypes for asm.c
