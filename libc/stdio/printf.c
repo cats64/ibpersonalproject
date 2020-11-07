@@ -78,6 +78,10 @@ int printf(const char* restrict format, ...) {
 			if (!print(str, len))
 				return -1;
 			written += len;
+		} else if (*format == 'd') {
+			format++;
+			// TODO: convert the raw integer in memory into text, this doesn't work
+			int d = va_arg(parameters, int);
 		} else {
 			// Do not increment- we haven't seen a specifier.
 			format = format_begun_at;
@@ -97,4 +101,19 @@ int printf(const char* restrict format, ...) {
 	va_end(parameters);
 	// Tell the caller how many characters we printed
 	return written;
+}
+
+// A potential conversion function, but not ready for prime-time yet
+static size_t convert(int num, int base) {
+	static char rep[] = "0123456789ABCDEF";
+	static char buffer[50];
+	char *ptr;
+	
+	ptr = &buffer[49];
+	*ptr = '\0';
+	
+	do {
+		*--ptr = rep[num % base];
+	} while (num != 0);
+	return ptr;
 }
