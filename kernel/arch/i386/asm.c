@@ -3,8 +3,7 @@
 
 #include <kernel/asm.h>
 
-/* This file allows us to mess with memory in ways not normally avalible to us in the C language by itself. 
-You _will_ need GCC for this, no other compiler does GNU extensions */
+/* You _will_ need GCC for this, no other compiler does GNU extensions */
 
 // inb: a function for getting data from an I/O location or port
 static inline uint8_t inb(uint16_t port) {

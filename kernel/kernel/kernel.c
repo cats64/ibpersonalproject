@@ -4,8 +4,7 @@
  * Not a lot is done here- it's mostly delegated somewhere else. */
 void kernel_main(void) {
     term_init();
-    // TODO: The tab still prints some weird character- fix that
-    int i = 1;
-    printf("    ===- SimpleOS -===\nCopyright Nathaniel S. Flores. ALL RIGHTS RESERVED.\n");
+    int i = 100;
+    printf("    ===- SimpleOS -===\nCopyright Nathaniel S. Flores. SOME RIGHTS RESERVED.\n");
     printf("%d is i,", i);
 }
