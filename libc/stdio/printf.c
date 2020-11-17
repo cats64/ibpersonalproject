@@ -14,6 +14,20 @@ static bool print(const char* data, size_t length) {
 	return true;
 }
 
+static size_t convert(int num, int base) {
+	static char rep[] = "0123456789ABCDEF";
+	static char buffer[50];
+	char *ptr;
+	
+	ptr = &buffer[49];
+	*ptr = '\0';
+	
+	do {
+		*--ptr = rep[num % base];
+	} while (num != 0);
+	return ptr;
+}
+
 /* A function that prints a string, and replaces certain parts of the string with data.
  * This is easily the longest single function in this OS, and is commented very well.
  * Please read all of them to be sure you understand the function before calling it.
@@ -80,8 +94,12 @@ int printf(const char* restrict format, ...) {
 			written += len;
 		} else if (*format == 'd') {
 			format++;
-			// TODO: convert the raw integer in memory into text, this doesn't work
-			int d = va_arg(parameters, int);
+			const char* tmp = convert(va_arg(parameters, int), 10);
+			size_t num = strlen(tmp);
+			if (maxrem < num) {
+				return -1;
+			}
+			written += tmp;
 		} else {
 			// Do not increment- we haven't seen a specifier.
 			format = format_begun_at;
@@ -104,16 +122,4 @@ int printf(const char* restrict format, ...) {
 }
 
 // A potential conversion function, but not ready for prime-time yet
-static size_t convert(int num, int base) {
-	static char rep[] = "0123456789ABCDEF";
-	static char buffer[50];
-	char *ptr;
-	
-	ptr = &buffer[49];
-	*ptr = '\0';
-	
-	do {
-		*--ptr = rep[num % base];
-	} while (num != 0);
-	return ptr;
-}
+
