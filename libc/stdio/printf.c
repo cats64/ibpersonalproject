@@ -14,18 +14,31 @@ static bool print(const char* data, size_t length) {
 	return true;
 }
 
-static size_t convert(int num, int base) {
-	static char rep[] = "0123456789ABCDEF";
-	static char buffer[50];
-	char *ptr;
-	
-	ptr = &buffer[49];
-	*ptr = '\0';
-	
-	do {
-		*--ptr = rep[num % base];
-	} while (num != 0);
-	return ptr;
+char * itoa(int v, char * str, int b) {
+  char * rc;
+  char * ptr;
+  char * low;
+
+  if (b < 2 || b > 36) {
+    *str = '\0';
+    return str;
+  }
+  rc = ptr = str;
+  if (v < 0 && b == 10) {
+    *ptr++ = '-';
+  }
+  low = ptr;
+  do {
+    *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqestuvwxyz"[35 + v % b];
+    v /= b;
+  } while (v);
+  *ptr-- = '\0';
+  while (low < ptr) {
+    char tmp = *low;
+    *low++ = *ptr;
+    *ptr-- = tmp;
+  }
+  return rc;
 }
 
 /* A function that prints a string, and replaces certain parts of the string with data.
@@ -94,12 +107,14 @@ int printf(const char* restrict format, ...) {
 			written += len;
 		} else if (*format == 'd') {
 			format++;
-			const char* tmp = convert(va_arg(parameters, int), 10);
-			size_t num = strlen(tmp);
-			if (maxrem < num) {
+			char tmp;
+			itoa(va_arg(parameters, int), &tmp, 10);
+			if (!maxrem) {
 				return -1;
 			}
-			written += tmp;
+			if (!printf(&tmp, sizeof(tmp)))
+				return -1;
+			written++;
 		} else {
 			// Do not increment- we haven't seen a specifier.
 			format = format_begun_at;
