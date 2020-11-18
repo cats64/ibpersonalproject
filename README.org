@@ -7,17 +7,13 @@ I wanted to learn about OS design. Many OS tutorials exist, but not many of them
 ** Building instructions
 *NOTE:* These instructions work on Linux distros only. Cygwin, BSD and MacOS /may/ work with these directions, but I have not tested it.
 *** Install packages
-Building the OS needs the following packages:
--Xorriso
--GRUB 2
--Any POSIX shell
--GNU Make
-You can install this with the following packages on each distro:
-**** Arch-based distro
-**** Fedora/CentOS
-**** Debian-based distro
-**** Gentoo
-For other distros, check your package manager for similar packages to the ones listed above. With the exeption of Xorriso, all of these are packages needed for basic system functionality and should be avalible.
+You can install the needed packages with the following command on the following distro:
+**** Fedora, Ubuntu, Debian, RHEL, Gentoo, OpenBSD
+#+begin_src bash
+  $ ./build-packages.sh
+#+end_src
+**** Everything else
+Build all the packages from source.
 *** Starting the toolchain
 To execute the GCC and Binutils builder, run the following commands:
 #+begin_src bash
@@ -27,7 +23,7 @@ This will download the latest GCC and Binutils sources, and install them in the 
 *** Actually building the OS
 You can build the OS with one command:
 #+begin_src bash
-  $ ./build-all.sh
+  $ ./all.sh
 #+end_src
 If you'd prefer to do it by hand, run the following:
 #+begin_src bash
