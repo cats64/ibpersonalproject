@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 // A function that checks to see if the string is legitimate and nonzero
 static bool print(const char* data, size_t length) {
@@ -84,10 +85,10 @@ int printf(const char* restrict format, ...) {
 		if (*format == 'c') {
 			// Increment the amount of formats we have seen.
 			format++;
-			// char is now int, this is a gross hack
+			// char promotes to int through cast
 			char c = (char) va_arg(parameters, int);
 			if (!maxrem) {
-				//TODO: when we return from this, mark the error as overflow
+			//TODO: when we return from this, mark it as overflow
 				return -1;
 			}
 			if (!print(&c, sizeof(c)))
@@ -100,7 +101,7 @@ int printf(const char* restrict format, ...) {
 			const char* str = va_arg(parameters, const char*);
 			size_t len = strlen(str);
 			if (maxrem < len) {
-				//TODO: when we return from this, mark the error as overflow
+			//TODO: when we return from this, mark it as overflow
 				return -1;
 			}
 			if (!print(str, len))
@@ -113,6 +114,20 @@ int printf(const char* restrict format, ...) {
 			itoa(i,str,10);
 			size_t len = strlen(str);
 			if (maxrem < len) {
+			  //TODO: when we return from this, mark it as overflow
+			  return -1;
+			}
+			if (!print(str, len))
+			  return -1;
+			written += len;
+		} else if (*format == 'i') {
+		        format++;
+			int i = va_arg(parameters, int);
+			char str[20];
+			itoa(i,str,10);
+			size_t len = strlen(str);
+			if (maxrem < len) {
+			//TODO: when we return from this, mark it as overflow
 			  return -1;
 			}
 			if (!print(str, len))
@@ -131,12 +146,28 @@ int printf(const char* restrict format, ...) {
 			  return -1;
 			written += len;	
 		} else if (*format == 'x') {
+		        //TODO: Append a "0x" string to show this is base 16
 		        format++;
 			int i = va_arg(parameters, int);
 			char str[20];
 			itoa(i,str,16);
 			size_t len = strlen(str);
 			if (maxrem < len) {
+			//TODO: when we return from this, mark it as overflow
+			  return -1;
+			}
+			if (!print(str, len))
+			  return -1;
+			written += len;
+		} else if (*format == 'p') {
+		        //TODO: Append a "0x" string to show this is base 16
+		        format++;
+			int i = (uintptr_t) va_arg(parameters, void*);
+			char str[20];
+			itoa(i,str,16);
+			size_t len = strlen(str);
+			if (maxrem < len) {
+			//TODO: when we return from this, mark it as overflow
 			  return -1;
 			}
 			if (!print(str, len))
@@ -147,7 +178,7 @@ int printf(const char* restrict format, ...) {
 			format = format_begun_at;
 			size_t len = strlen(format);
 			if (maxrem < len) {
-				//TODO: when we return from this, mark the error as overflow
+			//TODO: when we return from this, mark it as overflow
 				return -1;
 			}
 			if (!print(format, len))

@@ -9,4 +9,6 @@ void kernel_main(void) {
     printf("    ===- SimpleOS -===\nCopyright Nathaniel S. Flores. SOME RIGHTS RESERVED.\n");
     // We get base eight AND base ten!
     printf("\n\nInteger print test: %d %o", i, d);
+    // Pointer printing works too!
+    printf("\nPointer: i is 0x%p and d is 0x%p", (void *)&i, (void *)&d);
 }
