@@ -118,6 +118,30 @@ int printf(const char* restrict format, ...) {
 			if (!print(str, len))
 			  return -1;
 			written += len;
+		} else if (*format == 'o') {
+		        format++;
+			int i = va_arg(parameters, int);
+			char str[20];
+			itoa(i,str,8);
+			size_t len = strlen(str);
+			if (maxrem < len) {
+			  return -1;
+			}
+			if (!print(str, len))
+			  return -1;
+			written += len;	
+		} else if (*format == 'x') {
+		        format++;
+			int i = va_arg(parameters, int);
+			char str[20];
+			itoa(i,str,16);
+			size_t len = strlen(str);
+			if (maxrem < len) {
+			  return -1;
+			}
+			if (!print(str, len))
+			  return -1;
+			written += len;
 		} else {
 			// Do not increment- we haven't seen a specifier.
 			format = format_begun_at;

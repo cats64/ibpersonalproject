@@ -5,6 +5,8 @@
 void kernel_main(void) {
     term_init();
     int i = 125;
+    int d = 8;
     printf("    ===- SimpleOS -===\nCopyright Nathaniel S. Flores. SOME RIGHTS RESERVED.\n");
-    printf("\n\nInteger print test: %d", i);
+    // We get base eight AND base ten!
+    printf("\n\nInteger print test: %d %o", i, d);
 }
