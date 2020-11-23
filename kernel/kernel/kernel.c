@@ -4,7 +4,7 @@
  * Not a lot is done here- it's mostly delegated somewhere else. */
 void kernel_main(void) {
     term_init();
-    int i = 100;
+    int i = 125;
     printf("    ===- SimpleOS -===\nCopyright Nathaniel S. Flores. SOME RIGHTS RESERVED.\n");
-    printf("\n\n%d", i);
+    printf("\n\nInteger print test: %d", i);
 }

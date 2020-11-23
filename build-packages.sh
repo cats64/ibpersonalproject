@@ -23,10 +23,11 @@ installpkg() {
     elif [ $DISTRO = "DEBIAN" ]; then
 	sudo apt install build-essential bison flex libgmp3-dev libmpc-dev libmpfr-dev texinfo libcloog-isl-dev libisl-dev xorriso grub2
     elif [ $DISTRO = "GENTOO" ]; then
-	sudo emerge --ask sys-devel/gcc sys-devel/make sys-devel/bison sys-devel/flex dev-libs/gmp dev-libs/mpc dev-libs/mpfr sys-apps/texinfo dev-libs/cloog dev-libs/isl sys-boot/grub:2 dev-libs/libisoburn
+	echo "Please set QEMU_PLATFORMS="i386" in make.conf"
+	sudo emerge --ask sys-devel/gcc sys-devel/make sys-devel/bison sys-devel/flex dev-libs/gmp dev-libs/mpc dev-libs/mpfr sys-apps/texinfo dev-libs/cloog dev-libs/isl sys-boot/grub:2 dev-libs/libisoburn qemu
     elif [ $DISTRO = "OPENBSD"]; then
-	printf "You'll likely need to build xorriso yourself. YOU HAVE BEEN WARNED.\n"
-	doas pkg_add bison flex gmp libmpc mpfr texinfo
+	echo "You'll need to build xorriso. YOU HAVE BEEN WARNED."
+	doas pkg_add bison flex gmp libmpc mpfr texinfo qemu
     fi
 }
 

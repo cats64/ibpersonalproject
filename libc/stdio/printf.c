@@ -14,6 +14,7 @@ static bool print(const char* data, size_t length) {
 	return true;
 }
 
+// A function that takes a number, a string storage and a base for converting the first number to its character representation.
 char * itoa(int v, char * str, int b) {
   char * rc;
   char * ptr;
@@ -107,14 +108,16 @@ int printf(const char* restrict format, ...) {
 			written += len;
 		} else if (*format == 'd') {
 			format++;
-			char tmp;
-			itoa(va_arg(parameters, int), &tmp, 10);
-			if (!maxrem) {
-				return -1;
+			int i = va_arg(parameters, int);
+			char str[20];
+			itoa(i,str,10);
+			size_t len = strlen(str);
+			if (maxrem < len) {
+			  return -1;
 			}
-			if (!printf(&tmp, sizeof(tmp)))
-				return -1;
-			written++;
+			if (!print(str, len))
+			  return -1;
+			written += len;
 		} else {
 			// Do not increment- we haven't seen a specifier.
 			format = format_begun_at;
