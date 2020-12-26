@@ -19,9 +19,9 @@ getdistro() {
 }
 installpkg() {
     if [ $DISTRO = "REDHAT" ]; then
-	sudo dnf install gcc gcc-c++ make bison flex gmp-devel libmpc-devel mpfr-devel texinfo grub2-tools-extra xorriso grub2
+	sudo dnf install gcc gcc-c++ make bison flex gmp-devel libmpc-devel mpfr-devel texinfo grub2-tools-extra xorriso grub2 qemu
     elif [ $DISTRO = "DEBIAN" ]; then
-	sudo apt install build-essential bison flex libgmp3-dev libmpc-dev libmpfr-dev texinfo libcloog-isl-dev libisl-dev xorriso grub2
+	sudo apt install build-essential bison flex libgmp3-dev libmpc-dev libmpfr-dev texinfo libcloog-isl-dev libisl-dev xorriso grub2 qemu
     elif [ $DISTRO = "GENTOO" ]; then
 	echo "Please set QEMU_PLATFORMS="i386" in make.conf"
 	sudo emerge --ask sys-devel/gcc sys-devel/make sys-devel/bison sys-devel/flex dev-libs/gmp dev-libs/mpc dev-libs/mpfr sys-apps/texinfo dev-libs/cloog dev-libs/isl sys-boot/grub:2 dev-libs/libisoburn qemu
