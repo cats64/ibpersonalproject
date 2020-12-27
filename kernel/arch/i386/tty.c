@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <kernel/asm.h>
 #include <kernel/tty.h>
 
 #include "vga.h"
@@ -88,4 +89,10 @@ void term_write(const char* data, size_t size) {
 // A function that can write whole strings by passing the string and the size of the string.
 void term_writesector(const char* data) {
     term_write(data, strlen(data));
+}
+
+// A function that disables the text-mode cursor.
+void term_disablecursor(void) {
+  outb(0x3D4, 0x0A);
+  outb(0x3D5, 0x20);
 }
