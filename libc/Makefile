@@ -1,8 +1,9 @@
 DEFAULT_HOST!=i686-elf
 HOST?=DEFAULT_HOST
-HOSTARCH!=../target-triplet-to-arch.sh $(HOST)
+HOSTARCH=i386
 
-CFLAGS?=-O2 -g
+# A ton of compiler flags that make the build faster
+CFLAGS?=-O2 -g -pipe -fomit-frame-pointer
 CPPFLAGS?=
 LDFLAGS?=
 LIBS?=

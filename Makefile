@@ -1,5 +1,6 @@
 
 PWD := $(shell pwd)
+export PWD
 SYSTEM_HEADER_PROJECTS="libc kernel"
 export SYSTEM_HEADER_PROJECTS
 PROJECTS="libc kernel"
@@ -28,7 +29,8 @@ export LIBDIR
 INCLUDEDIR=/usr/include
 export INCLUDEDIR
 
-CFLAGS=-O2 -g
+# A ton of compiler flags that make the build faster
+CFLAGS=-O2 -g -pipe -fomit-frame-pointer
 CPPFLAGS=''
 export CFLAGS
 # Configure the cross-compiler to use the desired system root.
