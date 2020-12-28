@@ -10,36 +10,35 @@ I wanted to learn about OS design. Many OS tutorials exist, but not many of them
 You can install the needed packages with the following command on the following distro:
 **** Fedora, Ubuntu, Debian, RHEL, Gentoo, OpenBSD
 #+begin_src bash
-  $ ./build-packages.sh
+  $ make packages
 #+end_src
 **** Everything else
 Build all the packages from source.
 *** Starting the toolchain
 To execute the GCC and Binutils builder, run the following commands:
 #+begin_src bash
-  $ ./build-tools.sh
+  $ make tools
 #+end_src
 This will download the latest GCC and Binutils sources, and install them in the directory it is run in. Eventually it should take an argument on where to install the sources.
 *** Actually building the OS
 You can build the OS with one command:
 #+begin_src bash
-  $ ./all.sh
+  $ make all
 #+end_src
 If you'd prefer to do it by hand, run the following:
 #+begin_src bash
-  $ ./build.sh
-  $ ./iso.sh
-  $ ./qemu.sh
+  $ make build
+  $ make iso
+  $ make qemu
 #+end_src
 To clean it all up:
 #+begin_src bash
-  $ ./clean.sh
+  $ make clean
 #+end_src
 ** Known bugs:
-- Integer printing is currently broken in =printf()=.
-- The bootloader doesn't use the memory map information. It really should.
-- My code doesn't compile with -O3 flags.
+- =printf()= doesn't append a "0x" in front of all hexadecimal numbers.
+- =inb()= and =outb()= doesn't work as intended.
 ** Future features:
-- Multithreaded builds, use =-pipe= flags
-- Create printing of integers in base 16 and 8.
-- Read arbitrary memory adresses.
+- Read arbitrary memory adresses correctly.
+- Maybe map to higher half of memory?
+- Read BIOS info table
