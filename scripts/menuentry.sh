@@ -1,11 +1,2 @@
 #!/bin/sh
-abspath() {
-	cd ..
-	TEST=$(pwd)
-	export TEST
-}
-cat > ${TEST}/isodir/boot/grub/grub.cfg << EOF
-menuentry "Boot SimpleOS" {
-	multiboot /boot/simpleos.kernel
-}
-EOF
+cp -f $(pwd)/scripts/grub.cfg $(pwd)/isodir/boot/grub/grub.cfg
