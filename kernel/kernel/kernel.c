@@ -5,15 +5,15 @@
 /* This kernel_main is called in the boot.S file.
  * Not a lot is done here- it's mostly delegated somewhere else. */
 void kernel_main(void) {
+    // Start the virtual terminal.
     term_init();
-    //int i = 125;
-    //int d = 8;
-    //char test[100] = "Hello ";
-    //char test2[] = "World!";
+    // This is 80 characters and thus we don't need a newline- the virtual terminal will wrap the line for us.
     printf("================================================================================");
     printf("SimpleOS: created by Nathaniel Flores. SOME RIGHTS RESERVED 2020-2021\n\n");
+    // This is given information.
     printf("Video Screen Information: 80x25, address at 0xB8000\n");
     printf("Display Mode: Text Mode (0x044A)\n");
+    // TODO: fix farpeek so I can actually display this
     printf("Hard disk count: (not detected)\n");
     printf("Kernel mode: Protected (no paging)\n");
     printf("Arch: i386-elf\n");
