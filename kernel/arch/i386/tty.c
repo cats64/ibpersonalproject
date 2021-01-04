@@ -34,8 +34,11 @@ static uint16_t* term_buffer;
 void term_init(void) {
     term_row = 0;
     term_column = 0;
-    term_color = vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_RED);
+    term_color = vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_LIGHT_RED);
     term_buffer = VGA_MEMORY;
+    // Disable VGA cursor
+    outb(0x3D4, 0x0A);
+    outb(0x3D5, 0x20);
     for (size_t length = 0; length < VGA_HEIGHT; length++) {
         for (size_t width = 0; width < VGA_WIDTH; width++) {
             // This function creates an array, where the size of the array is the number of open character slots onscreen. 
@@ -91,8 +94,3 @@ void term_writesector(const char* data) {
     term_write(data, strlen(data));
 }
 
-// A function that disables the text-mode cursor.
-void term_disablecursor(void) {
-  outb(0x3D4, 0x0A);
-  outb(0x3D5, 0x20);
-}

@@ -1,6 +1,3 @@
-#ifndef ARCH_I386_ASM_H
-#define ARCH_I386_ASM_H
-
 #include <stdint.h>
 #include <stddef.h>
 
@@ -18,10 +15,18 @@ static inline uint8_t inb(uint16_t port) {
 
 // outb: a function for sending data on an I/O location or port
 static inline void outb(uint16_t port, uint8_t val) {
-  asm volatile ( "outb %0, %1"
-		 : "=a"(val)
-		 : "Nd"(port) );
+	asm volatile ( "outb %0, %1" : : "a"(val), "Nd"(port) );
 }
-#endif
-/* I'd like to write a farpeek and farpoke as well for reading and messing with memory locations, but for now, this will be good. 
-The reason for not writing them is I need to be able to restore register state after changing memory locations in assembly, so I don't critically damage anything. */
+
+// farpeek: read a given memory address
+static inline uint32_t farpeek(uint16_t sel, void* off) {
+	uint32_t ret;
+	asm ( "push %%fs\n\t"
+	      "mov  %1, %%fs\n\t"
+	      "mov  %%fs:(%2), %0\n\t"
+	      "pop  %%fs"
+	      : "=r"(ret) : "g"(sel), "r"(off) );
+	return ret;
+}
+
+// farpoke: write a value to a given memory address
