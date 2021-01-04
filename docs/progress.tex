@@ -25,7 +25,11 @@ Second phase:
  \item Due by December 21st: Complete PS/2 keyboard input and setup the boot process to read from it. We now have two way input to the user; keyboard drivers are extremely difficult and I do not expect for this to work fully.
  \item Due by January 4th of 2021: Wrap up development, freeze new commits to the Github repository and begin any work needed for Super Sunday/final presentation.
 \end{itemize}
-I have my code building on other operating systems and Linux distributions. It has been tested on my i686 machine and runs fine. SimpleOS also runs fine in VirtualBox, GNOME Boxes and QEMU. The PS/2 keyboard driver is not going to be ready in ime for January the 8th; however, I will be able to produce the technical documentation and presentation before the deadline. 
+It is now the end of the project. I have finished most of the work on getting memory mapping and other small details to work, but unfortunately keyboards proved to be far more difficult than I expect. Due to their complex nature and the fact I'd need to add a lot more to my kernel to write a driver for one, I have decided to hold off on writing one for my project.
 
-With the exeption of any work done between the dates of 1/01/21-1/04/2021, this project should be completely finished by the end of 2020. As of September 26th, 2020, this is the final deadline for my project. There will be no further revisions after today to this schedule. If I do not meet a deadline, I will attempt to get the work done before the next deadline.
+What I was able to finish is a barebones C library, various libraries for the kernel and a decent-enough API where someone could create their own basic operating system or protected-mode bootloader off of my code. I have documented as much as I could have and attempted to provide as much explanation as possible so others can use my code for their own learning. Hopefully this proves beneficial to them.
+
+Furthermore, the project is now pathetically easy to build and will be super easy for anyone to try out on any GNU/Linux system. It boots on real hardware and exhibits as many features as I could pack into it over a couple of months. This was a valuable learning experience but I'm excited to return to normal application development where I have a debugger to help me out.
+\\\\
+So long and thanks for all the fish!
 \end{document}
