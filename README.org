@@ -1,4 +1,5 @@
 * SimpleOS: my IB personal project
+[[./picture.png]]
 ** Information
 *** What is this?
 This is a simple operating system designed for educational reasons. It provides some of a C standard library with minor extensions, fit for a small program or kernel. In the future, it will take input and do some x86-specific things.
