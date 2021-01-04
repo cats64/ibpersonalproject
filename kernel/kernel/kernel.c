@@ -20,7 +20,7 @@ void kernel_main(void) {
     int x = 40;
     int y = 70;
     // Since pointers don't technically count as a real "type", we cast to void *
-    printf("\nReading memory addresses of kernel variables y and x:\n0x%d 0x%d", (void *)&y, (void *)&x);
+    printf("\nReading memory addresses of kernel variables y and x:\n0x%d 0x%d (Operation successful)", (void *)&y, (void *)&x);
     printf("\n\n\n\n\n\n\n\n\n\n\n================================================================================");
     // We get base eight AND base ten!
     //printf("\n\nInteger print test: %d %o", i, d);
