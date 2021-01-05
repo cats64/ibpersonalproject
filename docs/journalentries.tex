@@ -61,11 +61,98 @@
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
+Note: The following are entries in chronological order from when I started to the end of the project. 
 \section{An Introduction}
-
+\textbf{Need-to-know vocabulary:}\\
+CPU: the processor on the computer\\
+OS: Operating system\\
+Kernel: a program that runs at all times and restricts memory, CPU and hardware access for programs to keep them from destroying each other.\\
+Debugger: a program that reads code and prints out errors it detects to the screen. This helps in fixing errors in programs.\\
+Assembler/Compiler: tools that turn code into machine language programs (ones that the computer can execute). \\
+Linker: a tool that combines multiple executables into one\\
+\textbf{Work completed this week:}\\
+Over the week I was looking to solve a few questions that are really important when you are developing low-level stuff:
+\begin{itemize}
+\item How would I use a debugger? Additionally, how would I help myself to find bugs in my code?
+\item What compiler would I use?
+\item Where is a good reference for info on the i686 architecture and how it's different than other architectures?
+\end{itemize}
+With this in mind I got to work finding answers for some of these. Here's the answers I came up with:
+I can have the OS print to the screen, but if there's an issue with the screen driver, I can always use a serial port to send data to myself to read later.\\
+GCC would be my compiler of choice because it prints really nice error messages and it's the best for optimization. It also ships with an assembler and linker, so I wouldn't have to get those myself.
+To get info on the i686 architecture, I went looking for the official Intel docs, then I stopped looking because they cost \$600. I'm still looking for more sources and info I could use for my project.\\
+\textbf{Resources consulted:}\\
+-MINIX source code, found at \href{https://github.com/Stichting-MINIX-Research-Foundation/minix}{this URL (click here)} on Github. I'll whip up a bibliography entry for it soon. Was invaluable in regards to learning about how the PC boots up and how to chainload from GRUB into 32-bit mode.\\
+-Multiboot standard v0.6.96 \href{https://www.gnu.org/software/grub/manual/multiboot/multiboot.html}{(Click here to read it)} from the Free Software Foundation. This is what a kernel must have for GRUB to boot it, and considering that's what I am using, it's quite important to get it right. \\
+-Would like to say I have consulted the Intel docs, but I can't find the free version, if there even is one. Should I be able to find such a resource, it would likely be the single most useful resource for the project.\\
+\textbf{Problems encountered:}\\
+-The stock GCC that they have online doesn't support building for freestanding environments, so I had to build my own GCC from scratch. That took my computer over 5 hours to build.\\
+-The source code of MINIX contains a lot of sections that aren't applicable to my project and only a small bit of its information may prove useful to me. I really need more sources.\\
+-Boot code on i686 is only allowed to be 512 bytes at maximum. I'll have to be creative on space if I want to boot my OS safely.\\
+\textbf{Successful moments:}\\
+I recently got an i686 PC from 1993 that still runs! It only boots from a CD, so I need to plan out how exactly I will fit my kernel onto a CD and copy it to memory from the CD. Due to this, I will likely need to get a copy of the ISO 9660 standard (the format for how data is written to a CD) and find out how the boot info is read off a CD.\\
+\textbf{Evaluation of progress:}\\
+I would say that this first week was a great start. I haven't written any code yet; likely this week will be mostly reading and getting ready for writing my bootloader. I already have a few ideas for what my kernel would look like internally, and I've been writing scripts for my development environment. Future journal entries will be longer than this because this week was mostly setup for development.
 \section{Emacs, Git and Project Management}
+Okay, so I'm restructuring these. Journal entries are now twice a week and will answer the prompt, and cover some stuff completely unrelated to the prompt, but related to my project. Also, read the need-to-know vocab before you do anything else, or you'll be really confused.\\
+\textbf{Prompt(s):}\\
+How did you come up with the criteria for your project? (list the criteria in this entry)\\
+Why did you choose these criteria?\\
+Are these criteria achievable and measurable? How so?\\
+In what ways and manner are they challenging for you?\\
+\textbf{Prompt Answer: My criteria is as follows:}\\
+\begin{itemize}
+\item 300 LoC (lines of code)
+\item Prints text to the screen
+\item Takes input from the computer
+\item Must contain well-commented code and lots of documentation
+\item Must follow modern development practices
+\end{itemize}
+
+I selected these because they would improve my development proccess. The way I develop now is not the way I want to develop at the end of the personal project; for instance, I want to use a VCS over just making a duplicate of a file I want to edit. Most of my projects are developed for myself and never for someone else, so documenting is important now that I actually have to share it with others. Development practices are done for a reason in the industry- that's to make life easier, and I should make my life easier. As for the 300 LoC, printing text, and takes input goals, these are goals I picked due to their difficulty. The next paragraph will explain why those are difficult goals.
+
+When you write code that runs on raw hardware, you don't have the luxury of having an operating system beneath you. As you may remember from the last journal, an operating system is a program that runs on your computer that abstracts the variations in computer hardware in such a way that a program may run on many different computers. Since I am writing an operating system, that means I need to setup everything myself. For instance, getting the screen to print characters means that I have to manually draw characters on screen, pixel by pixel (because there's no operating system to ask to do it for me!). The criteria I have for my operating system leaves some complex problems yet to be solved, and I think the inherent challenge of developing for raw hardware makes them challenging.\\
+\textbf{Need-to-know vocabulary:}\\
+Git: a VCS tool commonly used by many. \\
+VCS: Version Control System. Bascially, these systems allow you to create a log of all changes to a set of code, and undo or apply changes at will. These also allow you to "branch" a set of code; a branch is a copy of the master branch that you make changes to. You can merge and reverse individual changes and branches. While complicated, VCS tools are extremely powerful and useful for tracking info.\\
+Emacs: A text editor that has an immensely powerful scripting language. I'm using it to help with my development by helping me find errors in my code and to quickly test my code. The changes I'm making to my Emacs will be on my Github page. I will link to my Github in the next entry, I hope.\\
+\textbf{Work completed this week:}\\
+I setup a Github account and created a repository, or code archive, for my Emacs configuration and for my personal project. Everything I do for this personal project will be avalible on ManageBac and the repository. The Github repository will be well-documented and I hope that it will be something anyone can look at and understand.
+Configuring Emacs so it meets all my needs. While you'll have to look at my repository to get all the details, this was no easy feat and quite the challenge, considering I have never used Emacs for C developement. This will make it easy to test code and spot quick mistakes before they happen.
+I found a mentor for my project. They specialize in managing the developnment of projects; this is exactly what I was looking for. They will likely be the single greatest assitance to my project, because well-structured code prevents bugs and streamlines development.
+\textbf{Resources consulted:}\\
+I consulted my mentor for advice, but outside of that, I didn't consult any digital or paper resources these week. Later this week I plan to gather more resources for my project (some books, perhaps).\\
+\textbf{Problems encountered:}\\
+Git is not fun to use and took hours to fully configure and install. The repos won't be up until I know how to edit them from the command line and until I have a schedule for my project. 
+Emacs is a nightmare to configure, and fully de-bugging my scripts cost me a lot of valuable time. I likely won't mess with the configuration files unless I absolutely have to.\\
+\textbf{Successful moments:}\\
+Finding a mentor was a really successful moment, because it took me a while to find someone who has the skill to help me improve as a developer. I was extremely nervous I wouldn't find one in time, so that was a great relief for me.\\
+\textbf{Evaluation of progress:}\\
+I am currently quite close to having a development setup ready to go, so then I can quickly program and log all changes I make. Once the environment is actually set up, I'll share my Github repos and get working on the actual OS.
 \section{First Call With Mentor \& Something Unrelated}
-\section{Shorter Entries Means More Development Time}
+\textbf{Prompt(s): None}\\
+\textbf{Prompt Answer: None}\\
+\textbf{Need-to-know vocabulary:}\\
+Kanban cards: A tool one uses to structure development. You create cards, and put them into bins. Each bin represents a level of completion of the card (To-Do, In Progress, Finished). The card must be named descriptively and have at least one commit (a change made to the source code that adds or removes something) attached to it. \\
+Qemu: a virtualization tool used to simulate a computer inside your computer. How does it work? Well, I can't fully explain it here, but here's a simple explanation: Imagine you have an instruction on the CPU. For example, let's say the instruction is MOV EAX, RAX. So we move the value of register EAX to RAX. Now, on a regular computer, these are in hardware. To simulate them in software, we can make two variables in a random address in memory, and then tell the virtual CPU that these are the real values. Put more simply, virtual machines take a little bit of your PC's resources to simulate another PC that can only see the areas allocated to them. There's a lot I didn't cover here for brevity's sake, but hopefully this is enough to understand the concept.\\
+2*32 and 2*64: 2 to the 32nd power and 2 to the 16th power. \\
+Real mode and Protected mode: These are two separate modes in 32-bit CPUs. The "real mode" setting restricts the size of any one variable to 2*16. Software running in "real mode" can also only use the first 216 bytes of memory, or the first megabyte. In "protected mode", any one variable can be up to 2*32. This increases the amount of memory software can use from one megabyte to four gigabytes. Protected mode is far more feature-rich than real mode, but makes it harder to interface with hardware.\\
+\textbf{Work completed this week:}\\
+This half-week has been quite packed with homework, so I haven't been able to get done as much as I would like. I did meet with my mentor and I learned about how I enter protected mode. 
+
+In regards to my mentor, I was able to discuss some better development strategies. Eric told me that the best way to plan out development projects is to use kanban cards (see my definition above). With these, I can put the goals on my timeline directly into small steps that I can easily manage. I have also set up a Github account for my use, but until I can make sure nobody but me can change anything, I will not link it here. There might be a really short journal entry in the future that has the link, though. 
+
+I also learned a bit about the differences between protected mode and real mode. There are many of them, but you'll have to look above for my full definition. Information like this helps me begin to plan out a bootloader.\\
+\textbf{Resources consulted:}\\
+Intel programmer's manual. I can't believe that this is now open for free. Here is the text. This used to cost over \$600, so now the fact that I can read it is fantastic. This document specifies almost everything I need to know for my project: how to boot, how to print to the screen, the whole instruction set, and more.\\
+\textbf{Problems encountered:}\\
+Git still won't work. I've yet to narrow down the problem, but it likely lies somewhere in the firewall software of my laptop.
+I recently did something very stupid. While attempting to boot two different Linux distros, I broke the partition table at the start of the disk. This basically means that I had to reinstall everything. Luckily, I lost very little files because I always have backups. Perhaps that's the lesson to learn for today. \\
+\textbf{Successful moments:}\\
+Finding the Intel docs for free was a complete victory. I doubt that I'll need a lot of sources for this project, because most sources that exist are extremely comprehensive and authoritative. I got a working install of Qemu! Took around one hour to build on my laptop.\\
+\textbf{Evaluation of progress:}\\
+I am close to writing a bootloader, but still don't know how to use GNU Linker to make my actual bootable file. That is likely my next step.\\
+\section{Shorter Development Time}
 I've been told by my supervisor to shorten all journal entries to 350 words. So these are all now shorts.\\
 \textbf{Prompt(s): None}\\
 \textbf{Prompt Answer: None}\\
