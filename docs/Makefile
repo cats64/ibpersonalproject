@@ -11,6 +11,8 @@ build:
 	pdflatex progress.tex
 	pdflatex proposal.tex
 	pdflatex proposal.tex
+	pdflatex API.tex
+	pdflatex API.tex
 	@echo Build done.
 clean:
 	@echo Cleaning...

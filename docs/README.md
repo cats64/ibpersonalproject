@@ -7,7 +7,7 @@ This folder contains a few things of note.
 	- The "Proposal" PDF contains a copy of my proposal from ManageBac.
 - Some, however, are unique to this Github:
 	- The "Styleguide.txt" document outlines how C and Assembly should be written for this project.
-
+	- The "API" PDF file provides instructions for using the code in this project for yourself.
 
 These are provided so that people who cannot see my ManageBac can see the full details of my project.
 You'll also need a (recent) version of TeXLive to build the .tex files. 

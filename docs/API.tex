@@ -1,0 +1,20 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+\title{Programming API}
+\author{Nathaniel Flores}
+
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+In this document, there will be a detailed explanation of most of the functions that exist in my code and how you can use them for your own applications.
+\begin{itemize}
+\item \textbf{stdio.h:} This file provides the functions putchar(), printf() and puts(). They allow you to print data to the screen and do not need introduction as you will already know what they do if you've ever used C before. printf() is not complete and thus is missing a few specifiers. You'll need to look at it yourself.
+\item \textbf{stdlib.h:} This file provides the abort() library and nothing else. abort() instantly kills the kernel and puts the computer into a safe stopping point.
+\item \textbf{string.h:} This file provides a long list of memory and string related functions. These are the same functions as you've used before in the C standard library, so nothing unordinary here. However, I have not fully implemented the whole standard C library, so do be careful to make sure a function exists before you call it.
+\item \textbf{kernel/asm.h:} This file provides the inb() and outb() set of functions which can be used for port I/O. This is x86 specific and is not portable. inb() requires passing the port (16-bit address) to read, and outb() requires the port (16-bit address) and the output data (8-bit data).
+\item \textbf{kernel/tty.h:} This file provides a set of macro commands for directly influencing the terminal set up in tty.c. Do not use these: they exist mostly for printf.c and nothing else. Use a standard way of printing data, or you'll confuse printf.
+  \item \textbf{vga.h:} This is only for tty.c and should not be used. Use tty.c instead.
+\end{itemize}
+Extending the C library or adding more kernel-specific options might be a good next step, if you intend to seriously use this.
+\end{document}
