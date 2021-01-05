@@ -4,8 +4,12 @@ all: build
 	@echo "Done."
 build:
 	@echo Starting build...
+	# This is done twice for the sake of re-generating the ToC
+	pdflatex journalentries.tex
 	pdflatex journalentries.tex
 	pdflatex progress.tex
+	pdflatex progress.tex
+	pdflatex proposal.tex
 	pdflatex proposal.tex
 	@echo Build done.
 clean:
