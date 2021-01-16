@@ -3,6 +3,10 @@
 ** Information
 *** What is this?
 This is a simple operating system designed for educational reasons. It provides some of a C standard library with minor extensions, fit for a small program or kernel. In the future, it will take input and do some x86-specific things.
+
+As of 1/8/2020, the project repository is locked and no longer being edited. I do not intend to work on this project any further due to the restrictions of the IB Personal Project. Thanks to everyone who helped to make this possible!
+
+If you'd like to try it yourself, download this repository via the "Code" button, unzip =master.zip=, then insert the ISO file into a virtual machine, or burn it onto a USB drive or CD-ROM and test it on a real computer.
 *** Why make this when other operating systems exist?
 I wanted to learn about OS design. Many OS tutorials exist, but not many of them cover the basics beyond making a bootable file or printing to the screen. In all fairness, my project doesn't advance much further beyond them, but I attempt to create a system that is designed in such a way that it is extensible for others.
 ** Building instructions
@@ -38,8 +42,8 @@ To clean it all up:
 #+end_src
 ** Known bugs:
 - =printf()= doesn't append a "0x" in front of all hexadecimal numbers.
-- =inb()= and =outb()= doesn't work as intended.
+- The screen repeatedly blinks on and off on real hardware (need to re-write the VGA driver)
 ** Future features:
-- Read arbitrary memory adresses correctly.
+- Read arbitrary memory adresses correctly (fix =flongpeek=)
 - Maybe map to higher half of memory?
 - Read BIOS info table
